@@ -1,0 +1,17 @@
+# 默认全部走 LF，由 git 在 checkout 时按 .gitattributes 决定
+* text=auto eol=lf
+
+# Windows shell 脚本必须 CRLF，否则 cmd.exe 解析异常
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+# Unix shell 脚本强制 LF
+*.sh  text eol=lf
+
+# Markdown / JSON 统一 LF，避免双平台来回 commit 制造噪音 diff
+*.md   text eol=lf
+*.json text eol=lf
+
+# 二进制（暂无，留作扩展）
+*.png binary
+*.jpg binary

@@ -1,0 +1,41 @@
+# ---- 缓存 / 运行时 / 会话 ----
+backups/
+debug/
+file-history/
+paste-cache/
+plans/
+projects/
+runtime/
+sessions/
+session-env/
+shell-snapshots/
+.last-cleanup
+stats-cache.json
+history.jsonl
+proxy.log
+proxy.state.json
+
+# ---- 包含 token / OAuth / 会话状态 ----
+config.json
+.claude.json
+.claude.json.backup
+.claude.json.backup.*
+
+# ---- 本机生成的 wrapper（每台机器路径不同） ----
+bin/
+
+# ---- 平台/IDE symlink ----
+ide
+
+# ---- plugins 整个目录默认忽略，但保留 marketplace 列表 ----
+plugins/*
+!plugins/known_marketplaces.json
+
+# ---- OS 杂项 ----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- git 自身 ----
+*.swp
+*.swo
