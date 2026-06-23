@@ -27,9 +27,8 @@ bin/
 # ---- 平台/IDE symlink ----
 ide
 
-# ---- plugins 整个目录默认忽略，但保留 marketplace 列表 ----
-plugins/*
-!plugins/known_marketplaces.json
+# ---- plugins (machine-local state, not user-editable per official docs) ----
+plugins/
 
 # ---- OS 杂项 ----
 .DS_Store
