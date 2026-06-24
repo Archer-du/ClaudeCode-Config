@@ -36,9 +36,6 @@ ide
 # ---- plugins (machine-local state, not user-editable per official docs) ----
 plugins/
 
-# ---- 各发行版各自维护的本地配置 ----
-settings.json
-
 # ---- OS 杂项 ----
 .DS_Store
 Thumbs.db
