@@ -1,14 +1,20 @@
 #!/usr/bin/env bash
 # ============================================================
 #  Claude Code Internal - macOS / Linux bootstrap
-#  Run once per machine after `git clone` into ~/.claude-internal
+#  Run once per machine after `git clone` / `git init` into a
+#  Claude config dir (e.g. ~/.claude-internal, ~/.tclaude).
 #  Purpose:
 #    1) Detect Rider install path (/Applications / JetBrains Toolbox)
-#    2) Generate bin/code-wait.sh containing: exec "<rider>" --wait "$@"
+#    2) Generate <script-dir>/bin/code-wait.sh containing:
+#       exec "<rider>" --wait "$@"
 #    3) Persist EDITOR to ~/.zshrc (or ~/.bash_profile)
 # ============================================================
 
 set -eu
+
+# Anchor on the directory this script lives in so a single script
+# works for any Claude config dir (.claude-internal, .tclaude, ...).
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 RIDER_BIN=""
 
@@ -53,7 +59,7 @@ fi
 echo "[bootstrap] Found Rider: $RIDER_BIN"
 
 # --- Write wrapper ---
-WRAPPER_DIR="$HOME/.claude-internal/bin"
+WRAPPER_DIR="$BASE_DIR/bin"
 WRAPPER="$WRAPPER_DIR/code-wait.sh"
 
 mkdir -p "$WRAPPER_DIR"
@@ -73,7 +79,7 @@ else
     RC="$HOME/.bash_profile"
 fi
 
-LINE="export EDITOR=\"\$HOME/.claude-internal/bin/code-wait.sh\""
+LINE="export EDITOR=\"$WRAPPER\""
 
 touch "$RC"
 if grep -Fxq "$LINE" "$RC"; then

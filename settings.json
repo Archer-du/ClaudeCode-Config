@@ -1,7 +1,0 @@
-{
-  "model": "Opus",
-  "enabledPlugins": {
-    "claude-code-internal@claude-code-internal-plugins": true
-  },
-  "alwaysThinkingEnabled": true
-}

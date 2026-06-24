@@ -1,14 +1,20 @@
 @echo off
 REM ============================================================
 REM  Claude Code Internal - Windows bootstrap
-REM  Run once per machine after `git clone` into ~/.claude-internal
+REM  Run once per machine after `git clone` / `git init` into a
+REM  Claude config dir (e.g. ~/.claude-internal, ~/.tclaude).
 REM  Purpose:
 REM    1) Detect Rider install path (Program Files / Toolbox layouts)
-REM    2) Generate bin\code-wait.cmd containing "<rider>" --wait %*
+REM    2) Generate <script-dir>\bin\code-wait.cmd containing
+REM       "<rider>" --wait %*
 REM    3) Persist EDITOR to user-level env var via setx
 REM ============================================================
 
 setlocal EnableDelayedExpansion
+
+REM Anchor on the directory this script lives in. %~dp0 always ends with backslash.
+set "BASE_DIR=%~dp0"
+if "%BASE_DIR:~-1%"=="\" set "BASE_DIR=%BASE_DIR:~0,-1%"
 
 set "RIDER_EXE="
 
@@ -43,7 +49,7 @@ if not defined RIDER_EXE (
 echo [bootstrap] Found Rider: !RIDER_EXE!
 
 REM --- Write wrapper ---
-set "WRAPPER_DIR=%USERPROFILE%\.claude-internal\bin"
+set "WRAPPER_DIR=%BASE_DIR%\bin"
 set "WRAPPER=%WRAPPER_DIR%\code-wait.cmd"
 
 if not exist "%WRAPPER_DIR%" mkdir "%WRAPPER_DIR%"

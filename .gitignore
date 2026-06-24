@@ -1,7 +1,10 @@
 # ---- 缓存 / 运行时 / 会话 ----
 backups/
+cache/
 debug/
 file-history/
+locks/
+logs/
 paste-cache/
 plans/
 projects/
@@ -9,11 +12,14 @@ runtime/
 sessions/
 session-env/
 shell-snapshots/
+tasks/
 .last-cleanup
 stats-cache.json
 history.jsonl
 proxy.log
 proxy.state.json
+daemon.json
+daemon.port
 
 # ---- 包含 token / OAuth / 会话状态 ----
 config.json
@@ -29,6 +35,9 @@ ide
 
 # ---- plugins (machine-local state, not user-editable per official docs) ----
 plugins/
+
+# ---- 各发行版各自维护的本地配置 ----
+settings.json
 
 # ---- OS 杂项 ----
 .DS_Store
